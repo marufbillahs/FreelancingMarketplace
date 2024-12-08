@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Please insert correct data.";
         
     } else {
-/*
+/* //for JSON
         // Prepare the data array
         $data = [
             "fullname" => $fullname,
@@ -120,6 +120,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Registration successful! Data saved to JSON file.";
 */
 
+/*   //for XML
+
+ // Prepare the XML file path
+ $xmlFilePath = "../Data/userdata.xml";
+
+ // Load or create the XML document
+ if (file_exists($xmlFilePath)) {
+     $xml = simplexml_load_file($xmlFilePath);
+ } else {
+     $xml = new SimpleXMLElement("<?xml version=\"1.0\" encoding=\"UTF-8\"?><users></users>");
+ }
+
+ // Add new user data as a child node
+ $user = $xml->addChild("user");
+ $user->addChild("fullname", htmlspecialchars($fullname));
+ $user->addChild("username", htmlspecialchars($username));
+ $user->addChild("email", htmlspecialchars($email));
+ $user->addChild("phone", htmlspecialchars($phone));
+ $user->addChild("dob", htmlspecialchars($dob));
+ $user->addChild("gender", htmlspecialchars($gender));
+ $user->addChild("password", htmlspecialchars($password));
+ $user->addChild("address", htmlspecialchars($address));
+
+ // Save the XML structure to a file
+file_put_contents( $xmlFilePath, $xml->asXML());
+
+
+ echo "Registration successful! Data saved to XML file.";
+    
+*/
+
+
+
+ // Set cookies for form data,access data in profile.php
+ setcookie("fullname", $fullname, time() + (86400 * 30), "/"); // Expires in 30 days
+ setcookie("username", $username, time() + (86400 * 30), "/");
+ setcookie("email", $email, time() + (86400 * 30), "/");
+ setcookie("phone", $phone, time() + (86400 * 30), "/");
+ setcookie("dob", $dob, time() + (86400 * 30), "/");
+ setcookie("gender", $gender, time() + (86400 * 30), "/");
+ setcookie("password", $password, time() + (86400 * 30), "/");
+ setcookie("address", $address, time() + (86400 * 30), "/");
+
+// Set session variables,accses data in profile.php
 $_SESSION["fullname"]=$_REQUEST[ "fullname"];
 $_SESSION["username"]=$_REQUEST[ "username"];
 $_SESSION["email"]=$_REQUEST[ "email"];
@@ -131,7 +175,7 @@ $_SESSION["repassword"]=$_REQUEST["repassword"];
 $_SESSION["address"]=$_REQUEST[ "address"];
 
 header("Location:../View/Profile.php");
-        
+   
     }
 }
 ?>
