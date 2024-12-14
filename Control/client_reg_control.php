@@ -1,5 +1,8 @@
 <?php
 Session_start();
+
+require_once "../Model/db.php"; // Adjust the path to where myDB.php is located
+
 // Initialize error message variables
 $fullnameError = "";
 $usernameError = "";
@@ -28,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $repassword = $_REQUEST["repassword"];
     $address = $_REQUEST["address"];
     $terms = isset($_REQUEST["terms"]);
-
+    $userType = "client";
+  
     // Validate Full Name
     if (empty($fullname) || strlen($fullname) > 40) {
         $fullnameError = "Full Name should not exceed 40 characters.";
@@ -148,11 +152,10 @@ file_put_contents( $xmlFilePath, $xml->asXML());
 
 
  echo "Registration successful! Data saved to XML file.";
+ 
     
 */
-
-
-
+/*
  // Set cookies for form data,access data in profile.php
  setcookie("fullname", $fullname, time() + (86400 * 30), "/"); // Expires in 30 days
  setcookie("username", $username, time() + (86400 * 30), "/");
@@ -162,6 +165,28 @@ file_put_contents( $xmlFilePath, $xml->asXML());
  setcookie("gender", $gender, time() + (86400 * 30), "/");
  setcookie("password", $password, time() + (86400 * 30), "/");
  setcookie("address", $address, time() + (86400 * 30), "/");
+*/
+
+//for database
+
+// Create an instance of the database class
+$mydb = new myDB();
+$conobj = $mydb->openCon();
+
+
+
+// Insert data into the database
+$result = $mydb->insertData($conobj, $fullname, $username, $email, $phone, $dob, $gender, $password, $repassword, $address,$userType);
+
+if ($result == 1) {
+    echo "Registration successful! Data saved to database.";
+} else {
+    echo "Registration failed! Data not saved to database.";
+}
+
+
+header("Location:../View/login.php");
+
 
 // Set session variables,accses data in profile.php
 $_SESSION["fullname"]=$_REQUEST[ "fullname"];
@@ -174,8 +199,8 @@ $_SESSION["password"]=$_REQUEST[ "password"];
 $_SESSION["repassword"]=$_REQUEST["repassword"];
 $_SESSION["address"]=$_REQUEST[ "address"];
 
-header("Location:../View/Profile.php");
+//header("Location:../View/Profile.php");
    
     }
-}
+}                   
 ?>

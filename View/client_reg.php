@@ -1,5 +1,5 @@
 <?php
-require '../control/reg_control.php';
+require '../Control/client_reg_control.php';
 ?>
 
 
