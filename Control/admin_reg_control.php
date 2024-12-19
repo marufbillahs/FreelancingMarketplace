@@ -1,4 +1,5 @@
 <?php
+require_once "../Model/db.php";
 session_start();
 // Initialoze error message variables.
 $fullnameError = "";
@@ -32,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_REQUEST["password"];
     $re_password = $_REQUEST["re_password"];
     $terms = isset($_REQUEST["terms"]);
+    $usertype = "admin";
     
    
 
@@ -119,7 +121,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     } else
     
-    {
+    { 
+        //create an instance of the database class
+        $mydb = new myDB();
+        $conobj = $mydb->openCon();
+
+        if($mydb->isUsernameExists($conobj,$username)){
+            echo "Username already exists.";
+        }
+        
+        //insert data into the database
+
+        $result = $mydb->insertAdminData($conobj,$fullname,$username,$email,$nid,$phone,$dob,$gender,$present_address,$permanent_address,$password,$re_password,$usertype);
+         //put the username and password ,usertype in user table in the database
+        $mydb->insertUser($conobj,$username,$password,$email,$usertype);
+        if($result==1){
+            echo "Registration successful!";
+            header("Location:../View/login.php");
+        }else{
+            echo "Registration failed!";
+        }
+
+
+        //put the username and password ,usertype in user table in the database
+
+        $mydb->closeCon($conobj);
+
+
+
+
+
+       
+
         /*
         // Prepare the data array
         $data = [

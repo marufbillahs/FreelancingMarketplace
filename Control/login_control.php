@@ -41,13 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Redirect based on user type
             if ($row["userType"] == "client") {
-                header("Location: ../View/client_profile.php");
+                header("Location: ../View/client_dashboard.php");
             } else if ($row["userType"] == "admin") {
-                header("Location: ../View/admin_profile.php");
+                header("Location: ../View/admin_dashboard.php");
             } else if ($row["userType"] == "freelancer") {
-                header("Location: ../View/freelancer_profile.php");
+                header("Location: ../View/freelancer_dashboard.php");
             } else if ($row["userType"] == "moderator") {
-                header("Location: ../View/moderator_profile.php");
+                header("Location: ../View/moderator_dashboard.php");
             }
         } else {
             echo "Invalid username or password.";

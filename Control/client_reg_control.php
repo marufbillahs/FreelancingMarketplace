@@ -1,7 +1,7 @@
 <?php
 Session_start();
 
-require_once "../Model/db.php"; // Adjust the path to where myDB.php is located
+require_once "../Model/db.php";
 
 // Initialize error message variables
 $fullnameError = "";
@@ -173,22 +173,29 @@ file_put_contents( $xmlFilePath, $xml->asXML());
 $mydb = new myDB();
 $conobj = $mydb->openCon();
 
-
+//check username exists or not
+if($mydb->isUsernameExists($conobj,$username)){
+    echo "Username already exists.";
+}
 
 // Insert data into the database
-$result = $mydb->insertData($conobj, $fullname, $username, $email, $phone, $dob, $gender, $password, $repassword, $address,$userType);
+$result = $mydb->insertClientData($conobj, $fullname, $username, $email, $phone, $dob, $gender, $password, $repassword, $address,$userType);
 
+//put the username and password ,usertype in user table in the database
+
+$mydb->insertUser($conobj, $username, $password,$email,$userType);
 if ($result == 1) {
     echo "Registration successful! Data saved to database.";
+    header("Location:../View/login.php");
 } else {
     echo "Registration failed! Data not saved to database.";
 }
 
+$mydb->closeCon($conobj);
 
-header("Location:../View/login.php");
 
-
-// Set session variables,accses data in profile.php
+/*
+// Set session variables
 $_SESSION["fullname"]=$_REQUEST[ "fullname"];
 $_SESSION["username"]=$_REQUEST[ "username"];
 $_SESSION["email"]=$_REQUEST[ "email"];
@@ -200,7 +207,7 @@ $_SESSION["repassword"]=$_REQUEST["repassword"];
 $_SESSION["address"]=$_REQUEST[ "address"];
 
 //header("Location:../View/Profile.php");
-   
+ */  
     }
 }                   
 ?>
