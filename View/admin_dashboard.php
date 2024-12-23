@@ -14,7 +14,7 @@
         <a href = "admin_dashboard.php">Home |</a>
         <a href="profile.php">Profile</a>|
         <a href="inbox.php">Message</a>| 
-        <a href="Settings.php">Settings</a>|
+        <a href="settings.php">Settings</a>|
         <a href="../Control/logoutCheck.php">Logout</a>
 
     </nav>

@@ -88,18 +88,18 @@ class myDB {
 
 
 
-  
-    
-    //check login
-    public function checkLogin($conobj, $username, $password) {
-        $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-        $stmt = $conobj->prepare($sql);
-        $stmt->bind_param("ss", $username, $password);
-        $stmt->execute();
-        return $stmt->get_result();
 
+     //getUserByUsername
+     function getUserByUsername($connectionObject, $username) {
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = $connectionObject->query($sql);
+        return $result->fetch_assoc();
     }
     
+
+  
+
+
     //isUsernameExists
     function isUsernameExists($connectionObject,$username) {
         $sql = "SELECT * FROM users WHERE username = '$username'";
@@ -107,12 +107,7 @@ class myDB {
         return $result->num_rows > 0;
     }
 
-    //getUserByUsername
-    function getUserByUsername($connectionObject, $username) {
-        $sql = "SELECT * FROM users WHERE username = '$username'";
-        $result = $connectionObject->query($sql);
-        return $result->fetch_assoc();
-    }
+   
 
     //updateUserPassword
     function updateUserPassword($connectionObject, $username, $newPassword) {
@@ -125,6 +120,29 @@ class myDB {
         $connectionObject->query($sql);
     }
 
+
+    //post job
+    function postJob($connectionObject, $client_id, $title, $description, $job_type, $payment) {
+        $sql = "INSERT INTO jobs (client_id, title, description, job_type, payment) 
+        VALUES ('$client_id', '$title', '$description', '$job_type', '$payment')";
+              
+        // Execute the query
+        if ($connectionObject->query($sql)) {
+            return 1; // Success
+        } else {
+            return 0; // Failure
+        }
+    }
+
+    // Function to fetch jobs
+    function ViewJobs($conn, $client_id) {
+        $sql = "SELECT * FROM jobs WHERE client_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $client_id);
+        $stmt->execute();
+         return $stmt->get_result();
+
+    }
 
 
 

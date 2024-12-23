@@ -11,10 +11,10 @@
                     <legend><h2>Login</h2></legend>
                     <form action="../Control/login_control.php" method="post">
                         <b>UserName:</b>
-                        <input type="text" name="username" required><br>
+                        <input type="text" name="username" ><br>
                         
                         <b>Password :</b>
-                        <input type="password" name="password" required><br><br>
+                        <input type="password" name="password" ><br><br>
 
                         <input type="submit" value="Login">
                         <br><br>

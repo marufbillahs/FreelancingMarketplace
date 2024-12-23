@@ -5,6 +5,7 @@ require_once "../Model/db.php"; // Adjust the path to where myDB.php is located
 // Initialize error message variables
 $usernameError = "";
 $passwordError = "";
+$errorMessage = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $hasError = 0;
@@ -32,31 +33,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conobj = $mydb->openCon();
 
         // Check login credentials
-        $result = $mydb->checkLogin($conobj, $username, $password);
+        $result = $mydb->getUserByUsername($conobj, $username);
+        
+        if($result){
+            if($password == $result['password']){
+                $_SESSION['username'] = $username;
+                $_SESSION['userType'] = $result['userType'];
+                $_SESSION['user_id'] = $result['user_id'];
 
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $_SESSION["username"] = $row["username"];
-            $_SESSION["userType"] = $row["userType"];
-
-            // Redirect based on user type
-            if ($row["userType"] == "client") {
-                header("Location: ../View/client_dashboard.php");
-            } else if ($row["userType"] == "admin") {
-                header("Location: ../View/admin_dashboard.php");
-            } else if ($row["userType"] == "freelancer") {
-                header("Location: ../View/freelancer_dashboard.php");
-            } else if ($row["userType"] == "moderator") {
-                header("Location: ../View/moderator_dashboard.php");
+                if ($result['userType'] == 'client') {
+                    header("location: ../View/client_dashboard.php");
+                } elseif ($result['userType'] == 'freelancer') {
+                    header("location: ../View/freelancer_dashboard.php");
+                } elseif ($result['userType'] == 'admin') {
+                    header("location: ../View/admin_dashboard.php");
+                } elseif ($result['userType'] == 'moderator') {
+                    header("location: ../View/moderator_dashboard.php");
+                } else {
+                   exit();
+                }
+            } else {
+                $passwordError = "Invalid password";
             }
         } else {
-            echo "Invalid username or password.";
+            $usernameError = "Invalid username";
         }
 
         // Close the database connection
         $mydb->closeCon($conobj);
-    } else {
-        echo "Please correct the errors and try again.";
+    }
+
+    // Display error messages
+    if (!empty($usernameError)) {
+        echo $usernameError . "<br>";
+    }
+    if (!empty($passwordError)) {
+        echo $passwordError . "<br>";
+    }
+    if (!empty($errorMessage)) {
+        echo $errorMessage . "<br>";
     }
 }
 ?>

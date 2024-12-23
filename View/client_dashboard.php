@@ -24,13 +24,17 @@
 
 <section>
     <h2>Welcome, <?php echo $_SESSION["username"]; ?>!</h2>
-    <button onclick="redirectToJobPost()">JobPost</button>
-    <script>function redirectToJobPost() {window.location.href = 'jobpost.php';}</script>
+    <a href="clientjobspost.php">
+    <button>JobPost</button>
+</a>
+
 </section>
 <section >
     <fieldset>
         <legend><h2>Posted Jobs</h2></legend>
-        <div id="jobList"></div>
+        <?php
+            include("../Control/clientjobsview_cn.php");
+        ?>
     </fieldset>
 </section>
 </body>

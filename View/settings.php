@@ -34,7 +34,7 @@
         ?>
 
         <h3>Change Password</h3>
-        <form action="../Control/settingsController.php" method="post" onsubmit="return validatePassword();">
+        <form action="../Control/settings_control.php" method="post">
            <table>
                 
             <tr>
@@ -59,7 +59,7 @@
         </form>
 
         <h3>Change Email</h3>
-        <form action="../Control/settingsController.php" method="post">
+        <form action="../Control/settings_control.php" method="post">
             <table>
             <tr>
                 <td>
