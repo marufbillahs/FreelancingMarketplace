@@ -29,7 +29,7 @@
 </a>
 
 </section>
-<section >
+<section style="max-width: 1200px; margin: auto; float: none; width: 100%;">
     <fieldset>
         <legend><h2>Posted Jobs</h2></legend>
         <?php

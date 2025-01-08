@@ -18,10 +18,12 @@
     <a href="../Control/logoutCheck.php">Logout</a>
     <br>
 </nav>
-<section>
+<section style="max-width: 800px; margin: auto;">
         <fieldset>
             <legend><h2>Job Info</h2></legend>
-            <div id="job"></div>
+           <?php
+                require_once '../Control/jobinfo_cn.php';
+            ?>
         </fieldset>
         <fieldset>
             <legend><h2>Applied Freelacer</h2></legend>

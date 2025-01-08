@@ -12,7 +12,7 @@ class myDB {
 
         $connectionObject = new mysqli($DBHost, $DBuser, $DBpassword, $DBname);
 
-       //write object oriented code to check connection
+       //object oriented code to check connection
         if ($connectionObject->connect_error) {
             die("Connection failed: " . $connectionObject->connect_error);
         }
@@ -143,10 +143,10 @@ class myDB {
          return $stmt->get_result();
 
     }
+    
+    
 
-
-
-
+    
     // Close connection
     function closeCon($connectionObject) {
         $connectionObject->close();
