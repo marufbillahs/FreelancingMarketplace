@@ -1,0 +1,88 @@
+
+* {
+    margin: 0;
+    padding: 0;
+  
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    padding: 20px;
+   
+}
+
+
+table {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+td {
+    padding: 5px;
+}
+
+
+fieldset {
+    border: 1px;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgb(242, 243, 247);
+}
+
+
+legend h2 {
+    text-align: center;
+    color:rgb(32, 35, 37);
+    
+}
+
+
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid ;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color:rgb(127, 127, 204);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+
+b {
+    font-size: 16px;
+    display: block;
+    margin-top: 10px;
+}
+
+
+select {
+    font-size: 16px;
+    padding: 8px;
+    width: 100%;
+    margin: 10px 0;
+    border: 1px solid;
+    border-radius: 4px;
+}
+
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+

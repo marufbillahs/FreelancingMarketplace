@@ -5,6 +5,7 @@
 <html>
 <head>
   <title>Job Posting Form</title>
+  <link rel="stylesheet" href="../CSS/job.css">
 </head>
 <body>
   <nav align="right">

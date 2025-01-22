@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>User Profile</title>
+    <link rel="stylesheet" href="../CSS/profile.css">
 </head>
 <body>
 

@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>Client Dashboard</title>
+    <link rel="stylesheet" href="../CSS/profile.css">
    
 </head>
 <body>

@@ -7,12 +7,15 @@ require '../Control/client_reg_control.php';
 <html lang="en">
 <head>
     <title>Sign Up</title>
+    <link rel="stylesheet" href="../CSS/reg.css">
+    <script src="../JS/client_reg.js"></script>
+
 </head>
 <body>
     <div class="container" align="center">
         <h2>Sign Up for Client</h2>
 
-        <form action="" method="post">
+        <form onsubmit="return validateSignUpForm();" action="../Control/client_reg_Control.php" method="post" >
             <table>
                 <tr>
                     <td><label for="fullname">Full Name:</label></td>
@@ -22,7 +25,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $fullnameError; ?></td>
+                    <td><span id="fullnameError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="username">User Name:</label></td>
@@ -32,7 +35,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $usernameError; ?></td>
+                    <td><span id="usernameError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email:</label></td>
@@ -42,7 +45,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $emailError; ?></td>
+                    <td><span id="emailError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="phone">Phone Number:</label></td>
@@ -52,7 +55,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $phoneError; ?></td>
+                    <td><span id="phoneError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="dob">Date of Birth:</label></td>
@@ -62,7 +65,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $dobError; ?></td>
+                    <td><span id="dobError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="gender">Gender:</label></td>
@@ -77,7 +80,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $genderError; ?></td>
+                    <td><span id="genderError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
@@ -87,7 +90,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $passwordError; ?></td>
+                    <td><span id="passwordError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="repassword">ReType Password:</label></td>
@@ -97,7 +100,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $repasswordError; ?></td>
+                    <td><span id="repasswordError"></span></td>
                 </tr>
                 <tr>
                     <td><label for="address">Address:</label></td>
@@ -107,7 +110,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $addressError; ?></td>
+                    <td><span id="addressError"></span></td>
                 </tr>
                 <tr>
                     <td colspan="2">
@@ -121,7 +124,7 @@ require '../Control/client_reg_control.php';
                 </tr>
                 <tr>
                     <td></td>
-                    <td><?php echo $termsError; ?></td>
+                    <td><span id="termsError"></span></td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center"><button type="submit">Sign Up</button></td>
