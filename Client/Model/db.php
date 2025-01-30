@@ -234,6 +234,25 @@ class myDB {
     return $response;
     }
 
+    // Update profile picture
+     public function updateProfilePicture($conn, $user_id, $profile_pic) {
+    $stmt = $conn->prepare("UPDATE users SET profile_pic=? WHERE user_id=?");
+    $stmt->bind_param("si", $profile_pic, $user_id);
+    $result = $stmt->execute();
+    $stmt->close();
+    return $result;
+    }
+
+     // Get user details
+    public function getUserById($conn, $user_id) {
+    $stmt = $conn->prepare("SELECT * FROM users WHERE user_id=?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    return $result->fetch_assoc();
+     }
+
     
 
     

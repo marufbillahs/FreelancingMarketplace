@@ -39,4 +39,40 @@ if (isset($errorMessage)) {
     header("Location: ../View/settings.php?success=" . urlencode($successMessage));
     exit();
 }
+
+//for uploading profile picture
+
+if (isset($_POST['changeProfilePicture']) && isset($_FILES['image'])) {
+    $user_id = $_SESSION['user_id'];
+    $targetDir = "../uploads/"; 
+
+
+    $fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $newFileName = "profile_" . $user_id . "." . $fileExt;
+    $targetFilePath = $targetDir . $newFileName;
+    $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+
+    if (in_array(strtolower($fileExt), $allowedTypes)) {
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFilePath)) {
+            $mydb = new myDB();
+            $conobj = $mydb->openCon();
+
+            if ($mydb->updateProfilePicture($conobj, $user_id, $newFileName)) {
+                $_SESSION['profile_pic'] = $newFileName;
+                header("Location: ../View/profile.php"); 
+                exit();
+            } else {
+                echo "Database update failed.";
+            }
+            $mydb->closeCon($conobj);
+        } else {
+            echo "Error uploading file.";
+        }
+    } else {
+        echo "Invalid file type.";
+    }
+}
+
+
+
 ?>

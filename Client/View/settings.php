@@ -74,6 +74,24 @@
             <tr><td><input type="submit" name="changeEmail" value="Change Email"></td></tr>
             </table>
         </form>
+
+        <form action="../Control/settings_control.php" method="post" enctype="multipart/form-data"> 
+                <h3>Profile Picture</h3>
+            <table>
+              <tr>
+                 <td>
+                    <input type="file" name="image" id="image" required>
+                </td>
+               </tr>
+               <tr>
+                    <td><input type="submit" name="changeProfilePicture" value="Upload Picture"></td>
+                </tr>
+          </table>    
+        </form>
+
+
+
+
     </section>
 
 </body>

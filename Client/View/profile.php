@@ -27,9 +27,13 @@
           <a href="../Control/logoutCheck.php">Logout</a>
     </nav>
 
+    
+
     <section align="center">
         <h2>User Profile</h2>
     </section>
+
+    
     <div>
         <?php
             require_once("../Model/db.php");
@@ -49,6 +53,18 @@
             }
         ?>
     </div>
+
+    <?php
+        $profilePicPath = "../uploads/profile_" . $user['user_id'] . ".jpg";
+        if (!file_exists($profilePicPath)) {
+            $profilePicPath = "../uploads/profile_default.jpg";
+        }
+
+    ?>
+
+    <h3>Profile Picture</h3>
+    <img src="<?php echo $profilePicPath; ?>" alt="Profile Picture" width="150" height="150">
+
 
 </body>
 </html>
