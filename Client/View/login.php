@@ -25,13 +25,13 @@
                     </form>
 
 
-                    <form action=" " method="post">
+                    <form onsubmit="return validlogin();" action=" " method="post">
                         <b>Don't have an account?</b> 
                         <br>
 
                         <b>Select User Type:</b>
                     
-                            <select name="user_type" required>
+                            <select  id="userType" name="user_type" >
                                 <option value="">Select type</option>
                                 <option value="admin">Admin</option>
                                 <option value="client">Client</option>
@@ -39,7 +39,9 @@
                                 <option value="moderator">Moderator</option>
                             </select><br><br>
 
-                            <input type="submit" name="signup" value="Signup">
+                            <span id="userTypeError"></span><br>
+
+                            <input type="submit" name="signup" value="Signup" >
                      </form>
 
                         <?php

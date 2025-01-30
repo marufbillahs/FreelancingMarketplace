@@ -31,7 +31,7 @@
                       <textarea id="description" name="description" rows="4" cols="50" ></textarea><br><br>
                     
                       <label>Job Type:</label><br>
-                      <input type="radio" id="hourly" name="job_type" value="hourly" checked>
+                      <input type="radio" id="hourly" name="job_type" value="hourly">
                       <label>Hourly</label><br>
                       <input type="radio" id="fixed" name="job_type" value="fixed">
                       <label>Fixed</label><br><br>

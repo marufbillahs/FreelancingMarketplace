@@ -54,5 +54,16 @@ function deleteJob(jobId) {
     xhr.send(jsonData);
 }
 
+//update validation
+function validateJobForm() {
+    if (!document.getElementById('title').value.trim() ||
+        !document.getElementById('description').value.trim() ||
+        !document.querySelector('input[name="job_type"]:checked') ||
+        !document.getElementById('payment').value.trim()) {
+        alert('All fields are required!');
+        return false;
+    }
+}
+
 
 

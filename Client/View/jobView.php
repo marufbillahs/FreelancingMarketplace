@@ -33,18 +33,18 @@
         </fieldset>
         <fieldset>
             <legend><h2>Update Job</h2></legend>
-            <form action="../Control/clientJobUpdate.php" method="post">
+            <form onsubmit="return validateJobForm()"; action="../Control/clientJobUpdate.php" method="post">
                 <label>Job Title:</label><br>
-                <input type="text" id="title" name="title" required><br><br>
+                <input type="text" id="title" name="title"><br><br>
                 <label>Job Description:</label><br>
-                <textarea id="description" name="description" rows="4" cols="50" required></textarea><br><br>
+                <textarea id="description" name="description" rows="4" cols="50"></textarea><br><br>
                 <label>Job Type:</label><br>
-                <input type="radio" id="hourly" name="job_type" value="hourly" checked>
+                <input type="radio" id="hourly" name="job_type" value="hourly">
                 <label>Hourly</label><br>
                 <input type="radio" id="fixed" name="job_type" value="fixed">
                 <label>Fixed</label><br><br>
                 <label>Payment Amount:</label><br>
-                <input type="number" id="payment" name="payment" step="0.01" required><br><br>
+                <input type="number" id="payment" name="payment" step="0.01"><br><br>
                 <input type="submit" value="Update">
             </form>
         </fieldset>
