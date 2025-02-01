@@ -1,6 +1,7 @@
 <?php
     session_start();
- 
+    require_once("../Control/authCheck.php");
+    checkLoggedIn();
 
     if (isset($_GET['job_id'])) {
         $jobId = $_GET['job_id'];

@@ -5,6 +5,8 @@ require_once("../Model/db.php");
 
 
 
+
+
 //create instance of database class
 $data = new myDB();
 $connection = $data->openCon();

@@ -1,5 +1,8 @@
 <?php
     session_start();
+    require_once("../Control/authCheck.php");
+    checkLoggedIn();
+   
 ?>
 <html>
 <head>

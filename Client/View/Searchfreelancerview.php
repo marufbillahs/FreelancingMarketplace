@@ -1,5 +1,7 @@
 <?php
 require_once("../Control/Searchfreelancer_cn.php");
+require_once("../Control/authCheck.php");
+checkLoggedIn();
 ?>
 <html>
 <head>
