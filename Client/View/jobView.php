@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="../CSS/jobView.css">
     <script src="../JS/clientJobView.js"></script>
+    <script src="../JS/appliedFreelancer.js"></script>
 </head>
 <body>
 <nav align="right">

@@ -235,8 +235,8 @@ class myDB {
     }
 
     // Update profile picture
-     public function updateProfilePicture($conn, $user_id, $profile_pic) {
-    $stmt = $conn->prepare("UPDATE users SET profile_pic=? WHERE user_id=?");
+     public function updateProfilePicture($connectionObject, $user_id, $profile_pic) {
+    $stmt = $connectionObject->prepare("UPDATE users SET profile_pic=? WHERE user_id=?");
     $stmt->bind_param("si", $profile_pic, $user_id);
     $result = $stmt->execute();
     $stmt->close();
@@ -244,8 +244,8 @@ class myDB {
     }
 
      // Get user details
-    public function getUserById($conn, $user_id) {
-    $stmt = $conn->prepare("SELECT * FROM users WHERE user_id=?");
+    public function getUserById($connectionObject, $user_id) {
+    $stmt = $connectionObject->prepare("SELECT * FROM users WHERE user_id=?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -253,7 +253,44 @@ class myDB {
     return $result->fetch_assoc();
      }
 
+     function fetchFreelancerApplications($connectionObject,$jobId) {
+       
     
+        $query = "SELECT applications.application_id, applications.job_id, applications.freelancer_id, 
+                  applications.application_text, applications.application_date, applications.status,
+                  users.username, users.email
+                  FROM applications
+                  JOIN users ON applications.freelancer_id = users.user_id
+                  WHERE applications.job_id = ?";
+    
+        $stmt = $connectionObject->prepare($query);
+        $stmt->bind_param("i", $jobId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $applications = [];
+    
+        while ($row = $result->fetch_assoc()) {
+            $applications[] = $row;
+        }
+    
+        $stmt->close();
+        $connectionObject->close();
+    
+        return $applications;
+    }
+
+
+    function updateApplicationStatus($connectionObject,$applicationId, $status) {
+       
+    
+            $query = "UPDATE applications SET status = ? WHERE application_id = ?";
+            $stmt = $connectionObject->prepare($query);
+            $stmt->bind_param("si", $status, $applicationId);
+            $stmt->execute();
+            return true;
+
+    }
 
     
     // Close connection
