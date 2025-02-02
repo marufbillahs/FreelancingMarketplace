@@ -195,16 +195,13 @@ class myDB {
 
     //delete job 
     function deleteJob($connectionObject,$jobID) {
-    try {
+   
         
         $query = "DELETE FROM jobs WHERE job_id = ?";
         $stmt = $connectionObject->prepare($query);
         $stmt->bind_param("i", $jobID);
         $stmt->execute();
         return true;
-    } catch (PDOException $e) {
-        return false;
-    }
     }
 
 
@@ -213,7 +210,7 @@ class myDB {
     function updateJob($connectionObject,$jobID, $title, $description, $jobType, $payment) {
    
     $response = ['success' => false, 'message' => ''];
-    try {
+   
         $query = "UPDATE jobs SET title = ?, description = ?, job_type = ?, payment = ? WHERE job_id = ?";
         $stmt = $connectionObject->prepare($query);
         $stmt->bind_param("ssdsi", $title, $description, $jobType, $payment, $jobID);
@@ -224,14 +221,11 @@ class myDB {
         } else {
             $response['message'] = "Error updating the job: " . $stmt->error;
         }
-    } catch (Exception $e) {
-        $response['message'] = "Exception: " . $e->getMessage();
-    } finally {
+   
         $stmt->close();
         $connectionObject->close();
-    }
-
-    return $response;
+ 
+        return $response;
     }
 
     // Update profile picture
@@ -253,6 +247,8 @@ class myDB {
     return $result->fetch_assoc();
      }
 
+     
+    //for freelancer Application
      function fetchFreelancerApplications($connectionObject,$jobId) {
        
     
@@ -280,6 +276,7 @@ class myDB {
         return $applications;
     }
 
+    //Update application status
 
     function updateApplicationStatus($connectionObject,$applicationId, $status) {
        
