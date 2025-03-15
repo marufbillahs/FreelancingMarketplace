@@ -7,7 +7,7 @@
 <head>
     <title>User Settings</title>
     <link rel="stylesheet" href="../CSS/index.css">
-    <script src="../JS/settings.js" defer></script>
+    <script src="../JS/settings.js"></script>
 </head>
 <body>
 
